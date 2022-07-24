@@ -48,7 +48,6 @@ class MainWindow(QMainWindow):
         self.number_group2.addButton(self.res4)
         self.number_group2.addButton(self.res5)
 
-        self.res5.setCheckable(True)
 
     def choose_outpath(self):
         self.outpath = QFileDialog.getExistingDirectory(None, 'Select a folder:', os.getcwd())
