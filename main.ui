@@ -150,6 +150,9 @@
            <property name="checked">
             <bool>true</bool>
            </property>
+           <property name="autoExclusive">
+            <bool>false</bool>
+           </property>
           </widget>
          </item>
         </layout>
@@ -215,7 +218,7 @@
        <item row="4" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QLabel" name="folder_label">
+          <widget class="QLabel" name="outpath_label">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -228,7 +231,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="folder_button">
+          <widget class="QPushButton" name="outpath_button">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -271,7 +274,7 @@
        <item row="0" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QRadioButton" name="r0">
+          <widget class="QRadioButton" name="video_button">
            <property name="font">
             <font>
              <family>Consolas</family>
@@ -287,7 +290,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="r1">
+          <widget class="QRadioButton" name="audio_button">
            <property name="font">
             <font>
              <family>Consolas</family>

@@ -9,29 +9,31 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         user = os.environ.get("USERNAME")
-        self.libpath = f"{os.path.abspath(os.curdir)}\\bin\\"
+
         self.outpath = f"C:\\Users\\{user}\\Desktop\\"
+        self.libpath = f"{os.path.abspath(os.curdir)}\\lib\\"
+
         self.mode = "Video"
         self.res = "Best"
 
         self.initUI()
 
         self.button.clicked.connect(self.download)
-        self.folder_button.clicked.connect(self.choose_outpath)
+        self.outpath_button.clicked.connect(self.choose_outpath)
         self.libpath_button.clicked.connect(self.choose_libpath)
 
     def initUI(self):
         uic.loadUi('main.ui', self)
 
-        self.folder_label.setText(self.outpath)
+        self.outpath_label.setText(self.outpath)
         self.libpath_label.setText(self.libpath)
 
-        self.r0.toggled.connect(self.set_mode)
-        self.r1.toggled.connect(self.set_mode)
+        self.video_button.toggled.connect(self.set_mode)
+        self.audio_button.toggled.connect(self.set_mode)
 
-        self.number_group = QButtonGroup(self)
-        self.number_group.addButton(self.r0)
-        self.number_group.addButton(self.r1)
+        self.number_group1 = QButtonGroup(self)
+        self.number_group1.addButton(self.video_button)
+        self.number_group1.addButton(self.audio_button)
 
         self.res1.toggled.connect(self.set_res)
         self.res2.toggled.connect(self.set_res)
@@ -39,10 +41,19 @@ class MainWindow(QMainWindow):
         self.res4.toggled.connect(self.set_res)
         self.res5.toggled.connect(self.set_res)
 
+        self.number_group2 = QButtonGroup(self)
+        self.number_group2.addButton(self.res1)
+        self.number_group2.addButton(self.res2)
+        self.number_group2.addButton(self.res3)
+        self.number_group2.addButton(self.res4)
+        self.number_group2.addButton(self.res5)
+
+        self.res5.setCheckable(True)
+
     def choose_outpath(self):
         self.outpath = QFileDialog.getExistingDirectory(None, 'Select a folder:', os.getcwd())
         if self.outpath:
-            self.folder_label.setText(self.outpath)
+            self.outpath_label.setText(self.outpath)
 
     def choose_libpath(self):
         self.libpath = QFileDialog.getExistingDirectory(None, 'Select a folder:', os.getcwd())
