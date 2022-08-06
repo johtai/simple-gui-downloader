@@ -31,7 +31,7 @@
   <property name="font">
    <font>
     <family>Consolas</family>
-    <pointsize>10</pointsize>
+    <pointsize>12</pointsize>
    </font>
   </property>
   <property name="windowTitle">
@@ -62,7 +62,7 @@
        <property name="font">
         <font>
          <family>Consolas</family>
-         <pointsize>10</pointsize>
+         <pointsize>12</pointsize>
         </font>
        </property>
        <property name="text">
@@ -93,7 +93,7 @@
          <property name="font">
           <font>
            <family>Consolas</family>
-           <pointsize>10</pointsize>
+           <pointsize>12</pointsize>
           </font>
          </property>
          <property name="text">
@@ -111,6 +111,12 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>Consolas</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>path</string>
            </property>
@@ -123,6 +129,12 @@
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>Consolas</family>
+             <pointsize>10</pointsize>
+            </font>
            </property>
            <property name="text">
             <string>Choose Folder</string>
@@ -145,7 +157,7 @@
         </spacer>
        </item>
        <item row="4" column="1" alignment="Qt::AlignLeft">
-        <widget class="QCheckBox" name="playlist_cb">
+        <widget class="QCheckBox" name="playlist_checkbox">
          <property name="text">
           <string>Playlist</string>
          </property>
@@ -207,7 +219,7 @@
          <property name="font">
           <font>
            <family>Consolas</family>
-           <pointsize>10</pointsize>
+           <pointsize>12</pointsize>
           </font>
          </property>
          <property name="text">
@@ -242,7 +254,7 @@
            <property name="font">
             <font>
              <family>Consolas</family>
-             <pointsize>10</pointsize>
+             <pointsize>12</pointsize>
             </font>
            </property>
            <property name="text">
@@ -258,7 +270,7 @@
            <property name="font">
             <font>
              <family>Consolas</family>
-             <pointsize>10</pointsize>
+             <pointsize>12</pointsize>
             </font>
            </property>
            <property name="text">
@@ -286,7 +298,7 @@
          <property name="font">
           <font>
            <family>Consolas</family>
-           <pointsize>10</pointsize>
+           <pointsize>12</pointsize>
           </font>
          </property>
          <property name="text">
@@ -299,7 +311,7 @@
          <property name="font">
           <font>
            <family>Consolas</family>
-           <pointsize>10</pointsize>
+           <pointsize>12</pointsize>
           </font>
          </property>
          <property name="text">
@@ -312,7 +324,7 @@
          <property name="font">
           <font>
            <family>Consolas</family>
-           <pointsize>10</pointsize>
+           <pointsize>12</pointsize>
           </font>
          </property>
          <property name="text">
@@ -336,6 +348,12 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>Consolas</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>path</string>
            </property>
@@ -349,6 +367,12 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <family>Consolas</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>Choose Folder</string>
            </property>
@@ -360,6 +384,19 @@
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="command_label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>580</y>
+      <width>661</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -367,7 +404,7 @@
      <x>0</x>
      <y>0</y>
      <width>671</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

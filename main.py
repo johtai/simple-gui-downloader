@@ -7,6 +7,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QButtonGroup, QFileDialog
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.set_globals()
         self.initUI()
 
         self.button.clicked.connect(self.download)
@@ -16,7 +17,7 @@ class MainWindow(QMainWindow):
         self.libpath_button.clicked.connect(self.choose_libpath)
 
     # set global variables
-    def set_globall(self):
+    def set_globals(self):
         user = os.environ.get("USERNAME")
         self.outpath = f"C:\\Users\\{user}\\Desktop\\"
         self.libpath = f"{os.path.abspath(os.curdir)}\\lib\\"
@@ -67,11 +68,18 @@ class MainWindow(QMainWindow):
         # make libpath the current folder for script
         os.chdir(self.libpath)
 
-        # choose the mode and make a commant to execute
+        # choose the mode and make a command to execute
         if self.mode == "Audio":
-            command = f'yt-dlp --audio-format "mp3" --extract-audio {url}'
+            command = 'yt-dlp --audio-format "mp3" --extract-audio'
         elif self.mode == "Video":
-            command = f'yt-dlp -S "res:{self.quality_box.currentText()}" {url}'
+            command = f'yt-dlp -S "res:{self.quality_box.currentText()}"'
+
+        if self.playlist_checkbox.isChecked():
+            command += " --yes-playlist"
+        else:
+            command += " --no-playlist"
+
+        command += f' "{url}"'
 
         # execute the command
         os.system(command)
