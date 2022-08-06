@@ -40,21 +40,25 @@ class MainWindow(QMainWindow):
         self.number_group1.addButton(self.video_button)
         self.number_group1.addButton(self.audio_button)
 
+    # interface for selecting a folder manually
     def choose_outpath(self):
         self.outpath = QFileDialog.getExistingDirectory(None, 'Select a folder:', os.getcwd())
         if self.outpath:
             self.outpath_label.setText(self.outpath)
 
+    # interface for selecting a folder manually
     def choose_libpath(self):
         self.libpath = QFileDialog.getExistingDirectory(None, 'Select a folder:', os.getcwd())
         if self.libpath:
             self.libpath_label.setText(self.libpath)
 
+    # set mode (video or audio)
     def set_mode(self):
         radioBtn = self.sender()
         if radioBtn.isChecked():
             self.mode = radioBtn.text()
 
+    # download the file
     def download(self):
         # get a url
         url = self.line.text()
@@ -73,9 +77,8 @@ class MainWindow(QMainWindow):
         os.system(command)
         self.command_label.setText(command)
 
-        get_files = os.listdir(self.libpath)
-        
         # move files from libpath to outpath
+        get_files = os.listdir(self.libpath)
         for file in get_files:
             if file.endswith(".mp3") or file.endswith(".mp4") or file.endswith(".opus") or file.endswith(".webm") or file.endswith(".mkv"):
                 shutil.move(self.libpath + file, self.outpath + file)
