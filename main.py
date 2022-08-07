@@ -90,7 +90,7 @@ class MainWindow(QMainWindow):
 
         # execute the command
         os.system(command)
-        self.command_label.setText(command)
+        self.command_line.setText(command)
 
         # move files from libpath to outpath
         get_files = os.listdir(self.libpath)
