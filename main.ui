@@ -34,6 +34,9 @@
     <pointsize>12</pointsize>
    </font>
   </property>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>simple-gui-downloader</string>
   </property>
@@ -104,21 +107,12 @@
        <item row="7" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QLabel" name="libpath_label">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
+          <widget class="QLineEdit" name="libpath_line">
            <property name="font">
             <font>
              <family>Consolas</family>
-             <pointsize>10</pointsize>
+             <pointsize>11</pointsize>
             </font>
-           </property>
-           <property name="text">
-            <string>path</string>
            </property>
           </widget>
          </item>
@@ -133,7 +127,7 @@
            <property name="font">
             <font>
              <family>Consolas</family>
-             <pointsize>10</pointsize>
+             <pointsize>11</pointsize>
             </font>
            </property>
            <property name="text">
@@ -341,21 +335,18 @@
        <item row="6" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
-          <widget class="QLabel" name="outpath_label">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
+          <widget class="QLineEdit" name="outpath_line">
            <property name="font">
             <font>
              <family>Consolas</family>
-             <pointsize>10</pointsize>
+             <pointsize>11</pointsize>
             </font>
            </property>
-           <property name="text">
-            <string>path</string>
+           <property name="focusPolicy">
+            <enum>Qt::StrongFocus</enum>
+           </property>
+           <property name="frame">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -370,7 +361,7 @@
            <property name="font">
             <font>
              <family>Consolas</family>
-             <pointsize>10</pointsize>
+             <pointsize>11</pointsize>
             </font>
            </property>
            <property name="text">

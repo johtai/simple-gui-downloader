@@ -1,6 +1,6 @@
 import sys, os, shutil
 from PyQt6 import uic
-from PyQt6.QtCore import QSize, Qt, QRect
+from PyQt6.QtCore import QSize, Qt, QRect, QPoint
 from PyQt6.QtWidgets import QApplication, QMainWindow, QButtonGroup, QFileDialog
 
 
@@ -16,11 +16,14 @@ class MainWindow(QMainWindow):
         # set the folder with yt-dlp and ffmpeg
         self.libpath_button.clicked.connect(self.choose_libpath)
 
+        self.outpath_line.setCursorPosition(0)
+        self.libpath_line.setCursorPosition(0)
+
     # set global variables
     def set_globals(self):
         user = os.environ.get("USERNAME")
-        self.outpath = f"C:\\Users\\{user}\\Desktop\\"
-        self.libpath = f"{os.path.abspath(os.curdir)}\\lib\\"
+        self.outpath = f"C:/Users/{user}/Desktop/"
+        self.libpath = f"{os.path.abspath(os.curdir)}/lib/".replace("\\", "/")
         self.mode = "Video"
         self.res = "Best"
 
@@ -28,9 +31,12 @@ class MainWindow(QMainWindow):
         # load most of widgets from file
         uic.loadUi('main.ui', self)
 
-        # set text to appropriate labels
-        self.outpath_label.setText(self.outpath)
-        self.libpath_label.setText(self.libpath)
+        # set text to appropriate lines
+        self.outpath_line.setText(self.outpath)
+        self.libpath_line.setText(self.libpath)
+
+        print(self.outpath_line.cursorPosition())
+        print(self.libpath_line.cursorPosition())
 
         # connect buttons with functions (signals)
         self.video_button.toggled.connect(self.set_mode)
@@ -45,13 +51,13 @@ class MainWindow(QMainWindow):
     def choose_outpath(self):
         self.outpath = QFileDialog.getExistingDirectory(None, 'Select a folder:', os.getcwd())
         if self.outpath:
-            self.outpath_label.setText(self.outpath)
+            self.outpath_line.setText(self.outpath)
 
     # interface for selecting a folder manually
     def choose_libpath(self):
         self.libpath = QFileDialog.getExistingDirectory(None, 'Select a folder:', os.getcwd())
         if self.libpath:
-            self.libpath_label.setText(self.libpath)
+            self.libpath_line.setText(self.libpath)
 
     # set mode (video or audio)
     def set_mode(self):
