@@ -16,6 +16,7 @@ class MainWindow(QMainWindow):
         # set the folder with yt-dlp and ffmpeg
         self.libpath_button.clicked.connect(self.choose_libpath)
 
+        # set QLineEdit cursor to the first position
         self.outpath_line.setCursorPosition(0)
         self.libpath_line.setCursorPosition(0)
 

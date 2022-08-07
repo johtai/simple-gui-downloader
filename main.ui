@@ -69,7 +69,10 @@
         </font>
        </property>
        <property name="text">
-        <string notr="true">Paste a link</string>
+        <string notr="true"/>
+       </property>
+       <property name="placeholderText">
+        <string>Paste a link (YouTube, Bandcamp and etc)</string>
        </property>
       </widget>
      </item>
@@ -374,19 +377,6 @@
       </layout>
      </item>
     </layout>
-   </widget>
-   <widget class="QLabel" name="command_label">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>580</y>
-      <width>661</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
