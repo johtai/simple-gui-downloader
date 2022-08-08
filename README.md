@@ -1,5 +1,5 @@
 # simple-gui-downloader
-Simple GUI app for yt-dlc and ffmpeg
+Simple GUI app for yt-dlp and ffmpeg
 
 Be sure you have an installed ffmpeg and yt-dlp. By default, they should be in the lib folder
 
