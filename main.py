@@ -78,7 +78,7 @@ class MainWindow(QMainWindow):
         # choose the mode and make a command to execute
         if self.mode == "Audio":
             ext = self.audio_format_box.currentText()
-            command = f'yt-dlp -x --audio-format "{ext} / mp3"'
+            command = f'yt-dlp -P {self.outpath} -x --audio-format "{ext} / mp3"'
             # download and embed the album/track cover
             if self.thumbnail_checkbox.isChecked():
                 command += " --embed-thumbnail"
@@ -90,9 +90,9 @@ class MainWindow(QMainWindow):
             res = self.quality_box.currentText()
 
             if self.quality_box.currentText() != "Best":
-                command = f'yt-dlp -f "bestvideo[ext={ext}][height<={res}]+bestaudio[ext=m4a] / bestvideo[ext=mp4][height<={res}]+bestaudio[ext=m4a]"'
+                command = f'yt-dlp -P {self.outpath} -f "bestvideo[ext={ext}][height<={res}]+bestaudio[ext=m4a] / bestvideo[ext=mp4][height<={res}]+bestaudio[ext=m4a]"'
             else:
-                command = f'yt-dlp -f "bestvideo[ext={ext}]+bestaudio[ext=m4a] / bestvideo[ext=mp4]+bestaudio[ext=m4a]"'
+                command = f'yt-dlp -P {self.outpath} -f "bestvideo[ext={ext}]+bestaudio[ext=m4a] / bestvideo[ext=mp4]+bestaudio[ext=m4a]"'
 
             if ext == "mkv":
                 command += " --merge-output-format mkv"
@@ -106,12 +106,6 @@ class MainWindow(QMainWindow):
         # execute the command
         os.system(command)
         self.command_line.setText(command)
-
-        # move files from libpath to outpath
-        get_files = os.listdir(self.libpath)
-        for file in get_files:
-            if file.endswith(".mp3") or file.endswith(".mp4") or file.endswith(".opus") or file.endswith(".webm") or file.endswith(".mkv"):
-                shutil.move(self.libpath + file, self.outpath + file)
 
 
 if __name__ == '__main__':
