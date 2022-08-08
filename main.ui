@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>674</width>
-    <height>750</height>
+    <width>700</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>500</width>
+    <width>700</width>
     <height>500</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>750</width>
-    <height>750</height>
+    <width>700</width>
+    <height>500</height>
    </size>
   </property>
   <property name="font">
@@ -46,8 +46,8 @@
      <rect>
       <x>30</x>
       <y>30</y>
-      <width>611</width>
-      <height>450</height>
+      <width>641</width>
+      <height>411</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -478,23 +478,13 @@
      </item>
     </layout>
    </widget>
-   <widget class="QTextEdit" name="command_line">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>540</y>
-      <width>611</width>
-      <height>161</height>
-     </rect>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>674</width>
+     <width>700</width>
      <height>25</height>
     </rect>
    </property>
