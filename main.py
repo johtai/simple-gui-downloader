@@ -77,10 +77,25 @@ class MainWindow(QMainWindow):
 
         # choose the mode and make a command to execute
         if self.mode == "Audio":
-            command = 'yt-dlp --audio-format "mp3" --extract-audio'
+            ext = self.audio_format_box.currentText()
+            command = f'yt-dlp -x --audio-format "{ext} / mp3"'
+            # download and embed the album/track cover
+            if self.thumbnail_checkbox.isChecked():
+                command += " --embed-thumbnail"
+            # download and embed the album/track cover for YouTube (from this issue https://github.com/yt-dlp/yt-dlp/issues/429#issuecomment-865423256)
+            elif self.youtube_cover_checkbox.isChecked():
+                command += """ --embed-thumbnail -v --convert-thumbnail jpg --ppa "EmbedThumbnail+ffmpeg_o:-c:v mjpeg -vf crop=\"'if(gt(ih,iw),iw,ih)':'if(gt(iw,ih),ih,iw)'\"" --exec ffprobe"""
         elif self.mode == "Video":
-            command = f'yt-dlp -S "res:{self.quality_box.currentText()}"'
+            ext = self.video_format_box.currentText()
+            res = self.quality_box.currentText()
 
+            if self.quality_box.currentText() != "Best":
+                command = f'yt-dlp -f "bestvideo[ext={ext}][height<={res}]+bestaudio[ext=m4a] / bestvideo[ext=mp4][height<={res}]+bestaudio[ext=m4a]"'
+            else:
+                command = f'yt-dlp -f "bestvideo[ext={ext}]+bestaudio[ext=m4a] / bestvideo[ext=mp4]+bestaudio[ext=m4a]"'
+
+            if ext == "mkv":
+                command += " --merge-output-format mkv"
         if self.playlist_checkbox.isChecked():
             command += " --yes-playlist"
         else:
