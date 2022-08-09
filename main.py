@@ -117,7 +117,6 @@ class MainWindow(QMainWindow):
 
         # execute the full command
         os.system(command)
-        self.command_line.setText(command)
 
 
 if __name__ == '__main__':
