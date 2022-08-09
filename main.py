@@ -11,6 +11,8 @@ class MainWindow(QMainWindow):
         self.initUI()
 
         self.download_button.clicked.connect(self.download)
+        self.copy_button.clicked.connect(self.copy)
+        self.clear_button.clicked.connect(self.clear)
         # set the folder to which the files should be downloaded
         self.outpath_button.clicked.connect(self.choose_outpath)
         # set the folder with yt-dlp and ffmpeg
@@ -30,7 +32,7 @@ class MainWindow(QMainWindow):
 
     def initUI(self):
         # load most of widgets from file
-        uic.loadUi('main.ui', self)
+        uic.loadUi('ui/main.ui', self)
 
         # set text to appropriate lines
         self.outpath_line.setText(self.outpath)
@@ -63,10 +65,17 @@ class MainWindow(QMainWindow):
         if radioBtn.isChecked():
             self.mode = radioBtn.text()
 
+    def copy(self):
+        clipboard = QApplication.clipboard()
+        clipboard.setText(self.url_line.text())
+
+    def clear(self):
+        self.url_line.setText("")
+
     # download the file
     def download(self):
         # get a url
-        url = self.line.text()
+        url = self.url_line.text()
 
         # make libpath the current folder for script
         os.chdir(self.libpath)
