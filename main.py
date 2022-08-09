@@ -19,6 +19,9 @@ class MainWindow(QMainWindow):
         self.libpath_button.clicked.connect(self.choose_libpath)
 
         # set QLineEdit cursor to the first position
+        self.outpath_line.textChanged.connect(self.change_paths)
+        self.libpath_line.textChanged.connect(self.change_paths)
+
         self.outpath_line.setCursorPosition(0)
         self.libpath_line.setCursorPosition(0)
 
@@ -47,6 +50,10 @@ class MainWindow(QMainWindow):
         self.number_group1.addButton(self.video_button)
         self.number_group1.addButton(self.audio_button)
 
+    def change_paths(self):
+        self.outpath = self.outpath_line.text()
+        self.libpath = self.libpath_line.text()
+
     # interface for selecting a folder manually
     def choose_outpath(self):
         self.outpath = QFileDialog.getExistingDirectory(None, 'Select a folder:', os.getcwd())
@@ -70,7 +77,7 @@ class MainWindow(QMainWindow):
         clipboard.setText(self.url_line.text())
 
     def clear(self):
-        self.url_line.setText("")
+        self.url_line.clear()
 
     # download the file
     def download(self):
