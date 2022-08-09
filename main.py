@@ -10,7 +10,7 @@ class MainWindow(QMainWindow):
         self.set_globals()
         self.initUI()
 
-        self.button.clicked.connect(self.download)
+        self.download_button.clicked.connect(self.download)
         # set the folder to which the files should be downloaded
         self.outpath_button.clicked.connect(self.choose_outpath)
         # set the folder with yt-dlp and ffmpeg
