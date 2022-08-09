@@ -36,9 +36,6 @@ class MainWindow(QMainWindow):
         self.outpath_line.setText(self.outpath)
         self.libpath_line.setText(self.libpath)
 
-        print(self.outpath_line.cursorPosition())
-        print(self.libpath_line.cursorPosition())
-
         # connect buttons with functions (signals)
         self.video_button.toggled.connect(self.set_mode)
         self.audio_button.toggled.connect(self.set_mode)
@@ -70,7 +67,6 @@ class MainWindow(QMainWindow):
     def download(self):
         # get a url
         url = self.line.text()
-        print(url)
 
         # make libpath the current folder for script
         os.chdir(self.libpath)
@@ -85,6 +81,7 @@ class MainWindow(QMainWindow):
             # download and embed the album/track cover for YouTube (from this issue https://github.com/yt-dlp/yt-dlp/issues/429#issuecomment-865423256)
             elif self.youtube_cover_checkbox.isChecked():
                 command += """ --embed-thumbnail -v --convert-thumbnail jpg --ppa "EmbedThumbnail+ffmpeg_o:-c:v mjpeg -vf crop=\"'if(gt(ih,iw),iw,ih)':'if(gt(iw,ih),ih,iw)'\"" --exec ffprobe"""
+        
         elif self.mode == "Video":
             # convenient variables for further use
             ext = self.video_format_box.currentText()
@@ -97,7 +94,7 @@ class MainWindow(QMainWindow):
                 # yt-dlp chooses the best resolution by itself
                 command = f'yt-dlp -P {self.outpath} -f "bestvideo[ext={ext}]+bestaudio[ext=m4a] / bestvideo[ext=mp4]+bestaudio[ext=m4a]"'
 
-            # force convertation
+            # force merge file to mkv
             if ext == "mkv":
                 command += " --merge-output-format mkv"
 
