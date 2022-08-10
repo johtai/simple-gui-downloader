@@ -120,7 +120,7 @@ class MainWindow(QMainWindow):
         else:
             command += " --no-playlist"
 
-        command += f' "{url}"'
+        command += f' --output "%(title)s.%(ext)s" "{url}"'
 
         # execute the full command
         os.system(command)
