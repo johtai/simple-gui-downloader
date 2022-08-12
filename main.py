@@ -18,6 +18,8 @@ class MainWindow(QMainWindow):
         # set the folder with yt-dlp and ffmpeg
         self.libpath_button.clicked.connect(self.choose_libpath)
 
+        self.thumbnail_checkbox.stateChanged.connect(self.sync_checkbox)
+
         # set QLineEdit cursor to the first position
         self.outpath_line.textChanged.connect(self.change_paths)
         self.libpath_line.textChanged.connect(self.change_paths)
@@ -49,6 +51,12 @@ class MainWindow(QMainWindow):
         self.number_group1 = QButtonGroup(self)
         self.number_group1.addButton(self.video_button)
         self.number_group1.addButton(self.audio_button)
+
+    def sync_checkbox(self):
+        if self.thumbnail_checkbox.isChecked() == False:
+            self.youtube_cover_checkbox.setEnabled(False)
+        else:
+            self.youtube_cover_checkbox.setEnabled(True)
 
     def change_paths(self):
         self.outpath = self.outpath_line.text()
