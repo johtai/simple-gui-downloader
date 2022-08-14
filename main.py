@@ -10,14 +10,17 @@ class MainWindow(QMainWindow):
         self.set_globals()
         self.initUI()
 
+        # initialize button signals 
         self.download_button.clicked.connect(self.download)
         self.copy_button.clicked.connect(self.copy)
         self.clear_button.clicked.connect(self.clear)
+
         # set the folder to which the files should be downloaded
         self.outpath_button.clicked.connect(self.choose_outpath)
         # set the folder with yt-dlp and ffmpeg
         self.libpath_button.clicked.connect(self.choose_libpath)
 
+        # initialize checkbox signals 
         self.thumbnail_checkbox.stateChanged.connect(self.sync_checkbox)
 
         # set QLineEdit cursor to the first position
@@ -52,12 +55,14 @@ class MainWindow(QMainWindow):
         self.number_group1.addButton(self.video_button)
         self.number_group1.addButton(self.audio_button)
 
+    # sync checkbox state
     def sync_checkbox(self):
         if self.thumbnail_checkbox.isChecked() == False:
             self.youtube_cover_checkbox.setEnabled(False)
         else:
             self.youtube_cover_checkbox.setEnabled(True)
 
+    # change variables if user changes paths
     def change_paths(self):
         self.outpath = self.outpath_line.text()
         self.libpath = self.libpath_line.text()
@@ -80,10 +85,12 @@ class MainWindow(QMainWindow):
         if radioBtn.isChecked():
             self.mode = radioBtn.text()
 
+    # copy button
     def copy(self):
         clipboard = QApplication.clipboard()
         clipboard.setText(self.url_line.text())
 
+    # clear button
     def clear(self):
         self.url_line.clear()
 
