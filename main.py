@@ -1,4 +1,4 @@
-import sys, os, shutil
+import sys, os
 from PyQt6 import uic
 from PyQt6.QtCore import QSize, Qt, QRect, QPoint
 from PyQt6.QtWidgets import QApplication, QMainWindow, QButtonGroup, QFileDialog
@@ -33,6 +33,7 @@ class MainWindow(QMainWindow):
     # set global variables
     def set_globals(self):
         user = os.environ.get("USERNAME")
+        self.ydl_opts = {}
         self.outpath = f"C:/Users/{user}/Desktop/"
         self.libpath = f"{os.path.abspath(os.curdir)}/lib/".replace("\\", "/")
         self.mode = "Video"
@@ -93,8 +94,8 @@ class MainWindow(QMainWindow):
     # clear button
     def clear(self):
         self.url_line.clear()
-
-    # download the file
+        
+        # download the file
     def download(self):
         # get a url
         url = self.url_line.text()
