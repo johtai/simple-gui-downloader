@@ -23,14 +23,16 @@ class MainWindow(QMainWindow):
         # initialize checkbox signals 
         self.thumbnail_checkbox.stateChanged.connect(self.sync_checkbox)
 
-        # set QLineEdit cursor to the first position
+        # change variables if paths was changed  
         self.outpath_line.textChanged.connect(self.change_paths)
         self.libpath_line.textChanged.connect(self.change_paths)
 
+        # set QLineEdit cursor to the first position
         self.outpath_line.setCursorPosition(0)
         self.libpath_line.setCursorPosition(0)
 
-        self.downloader_instance = Downloader(mainwindow=self)
+        # initialize QThread class for download
+        self.downloader = Downloader(mainwindow=self)
 
     # set global variables
     def set_globals(self):
@@ -97,9 +99,9 @@ class MainWindow(QMainWindow):
     def clear(self):
         self.url_line.clear()
         
-        # download the file
+    # download the file
     def download(self):
-        self.downloader_instance.start()
+        self.downloader.start()
 
 
 if __name__ == '__main__':
