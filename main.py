@@ -1,7 +1,7 @@
 import sys, os
 from PyQt6 import uic
-from PyQt6.QtCore import QSize, Qt, QRect, QPoint
 from PyQt6.QtWidgets import QApplication, QMainWindow, QButtonGroup, QFileDialog
+from downloader import Downloader
 
 
 class MainWindow(QMainWindow):
@@ -29,6 +29,8 @@ class MainWindow(QMainWindow):
 
         self.outpath_line.setCursorPosition(0)
         self.libpath_line.setCursorPosition(0)
+
+        self.downloader_instance = Downloader(mainwindow=self)
 
     # set global variables
     def set_globals(self):
@@ -97,49 +99,7 @@ class MainWindow(QMainWindow):
         
         # download the file
     def download(self):
-        # get a url
-        url = self.url_line.text()
-
-        # make libpath the current folder for script
-        os.chdir(self.libpath)
-
-        # choose the mode (audio or video download) and make a command to execute
-        if self.mode == "Audio":
-            ext = self.audio_format_box.currentText()
-            command = f'yt-dlp -P {self.outpath} -x --audio-format "{ext} / mp3"'
-            # download and embed the album/track cover
-            if self.thumbnail_checkbox.isChecked():
-                command += " --embed-thumbnail"
-            # download and embed the album/track cover for YouTube (from this issue https://github.com/yt-dlp/yt-dlp/issues/429#issuecomment-865423256)
-            elif self.youtube_cover_checkbox.isChecked():
-                command += """ --embed-thumbnail -v --convert-thumbnail jpg --ppa "EmbedThumbnail+ffmpeg_o:-c:v mjpeg -vf crop=\"'if(gt(ih,iw),iw,ih)':'if(gt(iw,ih),ih,iw)'\"" --exec ffprobe"""
-        
-        elif self.mode == "Video":
-            # convenient variables for further use
-            ext = self.video_format_box.currentText()
-            res = self.quality_box.currentText()
-
-            # if there is no required extension, the program chooses the mp4
-            if self.quality_box.currentText() != "Best":
-                command = f'yt-dlp -P {self.outpath} -f "bestvideo[ext={ext}][height<={res}]+bestaudio[ext=m4a] / bestvideo[ext=mp4][height<={res}]+bestaudio[ext=m4a]"'
-            else:
-                # yt-dlp chooses the best resolution by itself
-                command = f'yt-dlp -P {self.outpath} -f "bestvideo[ext={ext}]+bestaudio[ext=m4a] / bestvideo[ext=mp4]+bestaudio[ext=m4a]"'
-
-            # force merge file to mkv
-            if ext == "mkv":
-                command += " --merge-output-format mkv"
-
-        # downloads the full playlist, if it is contained in the url
-        if self.playlist_checkbox.isChecked():
-            command += " --yes-playlist"
-        else:
-            command += " --no-playlist"
-
-        command += f' --output "%(title)s.%(ext)s" "{url}"'
-
-        # execute the full command
-        os.system(command)
+        self.downloader_instance.start()
 
 
 if __name__ == '__main__':
