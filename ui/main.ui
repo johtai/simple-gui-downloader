@@ -459,6 +459,13 @@
        </property>
       </widget>
      </item>
+     <item row="9" column="1">
+      <widget class="QCheckBox" name="sections_checkbox">
+       <property name="text">
+        <string>Download sections</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
   </widget>
